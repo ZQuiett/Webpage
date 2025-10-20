@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHM Attendance Officer Funding Request</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* A very light grey to contrast with black */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FDBB2F; /* Gold loader */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold" style="color: #000000;">Securing Support for Student Success</h1>
+            <p class="mt-4 text-lg md:text-xl" style="color: #FDBB2F;">An Overview of the Penn-Harris-Madison Request for Attendance Officer Funding</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6" style="color: #000000;">The Challenge: A New State Mandate</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    <div class="md:col-span-1 text-center">
+                        <div class="text-6xl font-extrabold" style="color: #FDBB2F;">1 in 5</div>
+                        <p class="text-lg mt-2" style="color: #000000;">Indiana students were chronically absent in the last school year, prompting new state legislation.</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <p class="text-base md:text-lg mb-4" style="color: #000000;">New laws in Indiana now require school districts to implement a stricter, more structured process for truancy intervention. This includes mandatory parent conferences after just five unexcused absences and potential legal referrals after ten. While essential for student engagement, this created an unfunded mandate, requiring dedicated personnel to manage the process effectively.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8" style="color: #000000;">The County's Solution: A Clear Path to Funding</h2>
+                <p class="text-center text-base md:text-lg max-w-3xl mx-auto mb-8" style="color: #000000;">St. Joseph County responded proactively by passing Ordinance 59-25. This ordinance establishes a clear process for school corporations to request and receive the necessary funds to hire attendance officers, ensuring compliance with state law and supporting local students.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 rounded-lg" style="background-color: #FDBB2F; color: #000000;">
+                        <div class="font-bold text-lg">State Mandate</div>
+                        <div class="text-sm">New Truancy Laws</div>
+                    </div>
+                    <div class="text-2xl font-bold" style="color: #000000;">→</div>
+                    <div class="text-center p-4 rounded-lg" style="background-color: #f0f0f0; color: #000000;">
+                        <div class="font-bold text-lg">County Ordinance 59-25</div>
+                        <div class="text-sm">Creates Funding Mechanism</div>
+                    </div>
+                    <div class="text-2xl font-bold" style="color: #000000;">→</div>
+                    <div class="text-center p-4 rounded-lg" style="background-color: #f0f0f0; color: #000000;">
+                        <div class="font-bold text-lg">School Request</div>
+                        <div class="text-sm">PHM Submits Formal Proposal</div>
+                    </div>
+                    <div class="text-2xl font-bold" style="color: #000000;">→</div>
+                     <div class="text-center p-4 rounded-lg" style="background-color: #000000; color: #FDBB2F;">
+                        <div class="font-bold text-lg">Funding Approved</div>
+                        <div class="text-sm">Officers Support Students</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4" style="color: #000000;">PHM's Student Population & Needs</h3>
+                     <div class="text-center mb-4">
+                        <div class="text-6xl font-extrabold" style="color: #000000;">11,000</div>
+                        <p class="text-lg font-medium" style="color: #000000;">Students Served by PHM</p>
+                    </div>
+                    <p class="text-center text-base mb-4" style="color: #000000;">The county ordinance funds one full-time officer for every 7,500 students. Our enrollment of 11,000 students therefore requires additional support.</p>
+                    <div class="chart-container">
+                        <canvas id="studentPopulationChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                     <h3 class="text-xl md:text-2xl font-bold text-center mb-4" style="color: #000000;">The Formal Request: Cost Breakdown</h3>
+                     <div class="text-center mb-4">
+                        <div class="text-6xl font-extrabold" style="color: #000000;">$79,500</div>
+                        <p class="text-lg font-medium" style="color: #000000;">Total Funding Request</p>
+                    </div>
+                    <p class="text-center text-base mb-4" style="color: #000000;">The total request covers the salary and annual expenses for 1.5 FTE positions, ensuring dedicated support for our students.</p>
+                    <div class="chart-container">
+                        <canvas id="costBreakdownChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8" style="color: #000000;">Impact: Why This Funding Matters</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
+                        <span class="text-4xl" style="color: #FDBB2F;">&#x1F4C8;</span>
+                        <h4 class="font-bold text-lg mt-2" style="color: #000000;">Improved Attendance</h4>
+                        <p class="text-sm" style="color: #000000;">Directly addresses chronic absenteeism, helping students stay on track for graduation.</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
+                        <span class="text-4xl" style="color: #FDBB2F;">&#x1F5E3;</span>
+                        <h4 class="font-bold text-lg mt-2" style="color: #000000;">Early Intervention</h4>
+                        <p class="text-sm" style="color: #000000;">Identifies and supports at-risk students and families before attendance issues escalate.</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
+                        <span class="text-4xl" style="color: #FDBB2F;">&#x1F46A;</span>
+                        <h4 class="font-bold text-lg mt-2" style="color: #000000;">Family & Community Support</h4>
+                        <p class="text-sm" style="color: #000000;">Connects families with community resources to overcome barriers to attendance.</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
+                        <span class="text-4xl" style="color: #FDBB2F;">&#x2713;</span>
+                        <h4 class="font-bold text-lg mt-2" style="color: #000000;">State Law Compliance</h4>
+                        <p class="text-sm" style="color: #000000;">Ensures PHM fulfills all legal obligations for monitoring and reporting truancy.</p>
+                    </div>
+                </div>
+            </section>
+            
+             <section class="bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4" style="color: #000000;">Take Action: Support PHM Students</h2>
+                <p class="text-base md:text-lg max-w-2xl mx-auto mb-6" style="color: #000000;">Your voice matters. Let the St. Joseph County Council know you support this crucial funding for our students. Click the button below to generate a draft letter of support you can send.</p>
+                <button id="draftLetterBtn" class="text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" style="background-color: #000000; color: #FDBB2F;">
+                    ✨ Draft a Letter of Support
+                </button>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 py-4">
+            <p class="text-sm" style="color: #000000;">Penn-Harris-Madison School Corporation | Committed to Student Success</p>
+        </footer>
+
+    </div>
+
+    <div id="letterModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay bg-black bg-opacity-50 opacity-0 hidden">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-2xl transform scale-95">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-xl font-bold" style="color: #000000;">Your Draft Letter of Support</h3>
+                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <div id="modalBody" class="p-6">
+                <div id="loader" class="flex justify-center items-center py-10">
+                    <div class="loader"></div>
+                </div>
+                <div id="letterContent" class="hidden">
+                    <textarea id="letterText" class="w-full h-64 p-3 border rounded-md bg-gray-50" readonly></textarea>
+                    <div class="flex justify-end mt-4">
+                        <button id="copyBtn" class="text-white font-bold py-2 px-4 rounded-lg" style="background-color: #000000; color: #FDBB2F;">
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                    <div id="copySuccess" class="text-green-600 text-sm mt-2 text-right hidden">Copied to clipboard!</div>
+                </div>
+                 <div id="errorContent" class="hidden text-center py-10">
+                    <p class="text-red-600 font-semibold">An error occurred while generating the letter.</p>
+                    <p class="text-gray-600 text-sm">Please try again later.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 1 ? lines : label;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const sharedChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#000000', /* Black text for legend */
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+        
+        const studentPopulationCtx = document.getElementById('studentPopulationChart').getContext('2d');
+        new Chart(studentPopulationCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Students Covered by 1st Officer', 'Remaining Students Requiring 2nd Officer'],
+                datasets: [{
+                    label: 'Student Population Coverage',
+                    data: [7500, 3500],
+                    backgroundColor: ['#000000', '#FDBB2F'], /* Black and Gold */
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                cutout: '60%',
+            }
+        });
+
+        const costBreakdownCtx = document.getElementById('costBreakdownChart').getContext('2d');
+        new Chart(costBreakdownCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Full-Time Officer (1.0 FTE)', 'Half-Time Officer (0.5 FTE)'].map(label => wrapLabel(label)),
+                datasets: [
+                    {
+                        label: 'Salary',
+                        data: [50000, 25000],
+                        backgroundColor: '#000000', /* Black */
+                        borderColor: '#000000',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Expenses',
+                        data: [3000, 1500],
+                        backgroundColor: '#FDBB2F', /* Gold */
+                        borderColor: '#FDBB2F',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...sharedChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#000000', /* Black text */
+                             callback: function(value, index, values) {
+                                return '$' + new Intl.NumberFormat().format(value);
+                            }
+                        },
+                        grid: {
+                          color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#000000' /* Black text */
+                        },
+                        grid: {
+                          display: false
+                        }
+                    }
+                }
+            }
+        });
+        
+        const draftLetterBtn = document.getElementById('draftLetterBtn');
+        const letterModal = document.getElementById('letterModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalContent = document.querySelector('.modal-content');
+        const loader = document.getElementById('loader');
+        const letterContent = document.getElementById('letterContent');
+        const errorContent = document.getElementById('errorContent');
+        const letterText = document.getElementById('letterText');
+        const copyBtn = document.getElementById('copyBtn');
+        const copySuccess = document.getElementById('copySuccess');
+
+        const openModal = () => {
+            letterModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalOverlay.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        };
+
+        const closeModal = () => {
+            modalOverlay.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                letterModal.classList.add('hidden');
+                loader.style.display = 'flex';
+                letterContent.classList.add('hidden');
+                errorContent.classList.add('hidden');
+                copySuccess.classList.add('hidden');
+            }, 300);
+        };
+        
+        draftLetterBtn.addEventListener('click', async () => {
+            openModal();
+            
+            const prompt = `
+                As a concerned parent and resident of St. Joseph County, write a concise, respectful, and persuasive letter to the St. Joseph County Council. The goal is to express strong support for the Penn-Harris-Madison (PHM) School Corporation's funding request for attendance officers.
+                Key points to include:
+                - Acknowledge the new Indiana state laws on truancy.
+                - Commend the County Council for proactively creating a funding solution with Ordinance 59-25.
+                - State that PHM serves 11,000 students and is requesting $79,500 to fund 1.5 attendance officer positions, which is a justified need based on the county's own formula.
+                - Emphasize that these officers are a vital investment in student success, crucial for improving attendance, providing early intervention, and supporting at-risk families.
+                - Urge them to approve PHM's request promptly.
+                - Keep the tone positive and community-focused. The letter should be about 150-200 words.
+                - End with a placeholder for a name like "[Your Name], Concerned Resident".
+            `;
+
+            const apiKey = ""; // Replace with your actual Gemini API Key if deploying
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    letterText.value = candidate.content.parts[0].text;
+                    loader.style.display = 'none';
+                    errorContent.classList.add('hidden');
+                    letterContent.classList.remove('hidden');
+                } else {
+                    throw new Error('Invalid API response structure');
+                }
+
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                loader.style.display = 'none';
+                letterContent.classList.add('hidden');
+                errorContent.classList.remove('hidden');
+            }
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        letterModal.addEventListener('click', (e) => {
+            if (e.target === letterModal) {
+                closeModal();
+            }
+        });
+        
+        copyBtn.addEventListener('click', () => {
+            const textarea = document.createElement('textarea');
+            textarea.value = letterText.value;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            copySuccess.classList.remove('hidden');
+            setTimeout(() => {
+                copySuccess.classList.add('hidden');
+            }, 2000);
+        });
+
+    </script>
+</body>
+</html>
+

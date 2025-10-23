@@ -13,7 +13,16 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8f8f8; /* A very light grey to contrast with black */
+            color: #000000; /* Default text color set to black */
         }
+        h1, h2, h3, h4 {
+            color: #000000; /* Headings default to black */
+        }
+        /* Specific colors for gold accents */
+        .gold-text { color: #FDBB2F; }
+        .gold-bg { background-color: #FDBB2F; }
+        .black-bg { background-color: #000000; }
+        
         .chart-container {
             position: relative;
             width: 100%;
@@ -29,23 +38,59 @@
                 max-height: 400px;
             }
         }
-        .modal-overlay {
-            transition: opacity 0.3s ease-in-out;
-        }
-        .modal-content {
-            transition: transform 0.3s ease-in-out;
-        }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #FDBB2F; /* Gold loader */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: #ffffff !important; /* White background for print */
+                color: #000000 !important; /* Black text for print */
+                margin: 0;
+                padding: 0;
+                /* Optional: Force specific paper size, though browsers usually handle this */
+                /* size: A4 portrait; */
+            }
+            .container {
+                width: 100% !important;
+                max-width: none !important;
+                padding: 1cm !important; /* Adjust padding for print */
+            }
+            header, footer, section {
+                page-break-inside: avoid; /* Avoid breaking these elements across pages */
+            }
+            h1, h2, h3, h4, p {
+                color: #000000 !important; /* Ensure all text is black for print */
+            }
+            /* Reset specific element background colors for print if they don't look good */
+            .gold-bg { background-color: #FDBB2F !important; color: #000000 !important; } /* Gold background with black text */
+            .black-bg { background-color: #000000 !important; color: #FDBB2F !important; } /* Black background with gold text */
+            .bg-gray-100, .bg-white {
+                background-color: #ffffff !important;
+            }
+            .shadow-md {
+                box-shadow: none !important; /* Remove shadows for print */
+                border: 1px solid #e0e0e0; /* Add subtle border for separation */
+            }
+            .text-6xl { font-size: 2.5em !important; } /* Adjust large text for print */
+            .text-4xl { font-size: 2em !important; }
+            .text-3xl { font-size: 1.5em !important; }
+            .text-xl { font-size: 1.1em !important; }
+            .text-lg { font-size: 1em !important; }
+            .text-base { font-size: 0.9em !important; }
+            .text-sm { font-size: 0.8em !important; }
+            .chart-container {
+                height: 250px !important; /* Adjust chart height for print */
+                max-height: 250px !important;
+            }
+            /* Ensure chart labels and legends are black */
+            canvas {
+                filter: grayscale(100%) brightness(0%) contrast(100%) invert(0%) !important; /* Attempt to make chart elements black/white */
+                -webkit-print-color-adjust: exact; /* Forcing colors to print as they are */
+                print-color-adjust: exact;
+            }
+             .chartjs-render-monitor {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
@@ -54,8 +99,11 @@
     <div class="container mx-auto p-4 md:p-8">
 
         <header class="text-center mb-12">
+            <!-- PHM Logo Placeholder --><div class="mb-4">
+                <img src="https://www.phmschools.org/wp-content/uploads/2023/07/image_2023-07-06_143706965.png" alt="PHM Logo" class="mx-auto h-20">
+                <!-- Replace 'https://via.placeholder.com/150x75/000000/FDBB2F?text=PHM+Logo' with your actual logo URL --><!-- For example: <img src="path/to/your/phm_logo.png" alt="PHM Logo" class="mx-auto h-20"> --></div>
             <h1 class="text-4xl md:text-5xl font-extrabold" style="color: #000000;">Securing Support for Student Success</h1>
-            <p class="mt-4 text-lg md:text-xl" style="color: #FDBB2F;">An Overview of the Penn-Harris-Madison Request for Attendance Officer Funding</p>
+            <p class="mt-4 text-lg md:text-xl gold-text">An Overview of the Penn-Harris-Madison Request for Attendance Officer Funding</p>
         </header>
 
         <main class="space-y-12">
@@ -64,7 +112,7 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6" style="color: #000000;">The Challenge: A New State Mandate</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                     <div class="md:col-span-1 text-center">
-                        <div class="text-6xl font-extrabold" style="color: #FDBB2F;">1 in 5</div>
+                        <div class="text-6xl font-extrabold gold-text">1 in 5</div>
                         <p class="text-lg mt-2" style="color: #000000;">Indiana students were chronically absent in the last school year, prompting new state legislation.</p>
                     </div>
                     <div class="md:col-span-2">
@@ -77,7 +125,7 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-8" style="color: #000000;">The County's Solution: A Clear Path to Funding</h2>
                 <p class="text-center text-base md:text-lg max-w-3xl mx-auto mb-8" style="color: #000000;">St. Joseph County responded proactively by passing Ordinance 59-25. This ordinance establishes a clear process for school corporations to request and receive the necessary funds to hire attendance officers, ensuring compliance with state law and supporting local students.</p>
                 <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
-                    <div class="text-center p-4 rounded-lg" style="background-color: #FDBB2F; color: #000000;">
+                    <div class="text-center p-4 rounded-lg gold-bg" style="color: #000000;">
                         <div class="font-bold text-lg">State Mandate</div>
                         <div class="text-sm">New Truancy Laws</div>
                     </div>
@@ -92,7 +140,7 @@
                         <div class="text-sm">PHM Submits Formal Proposal</div>
                     </div>
                     <div class="text-2xl font-bold" style="color: #000000;">→</div>
-                     <div class="text-center p-4 rounded-lg" style="background-color: #000000; color: #FDBB2F;">
+                     <div class="text-center p-4 rounded-lg black-bg gold-text">
                         <div class="font-bold text-lg">Funding Approved</div>
                         <div class="text-sm">Officers Support Students</div>
                     </div>
@@ -129,69 +177,34 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-8" style="color: #000000;">Impact: Why This Funding Matters</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                     <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
-                        <span class="text-4xl" style="color: #FDBB2F;">&#x1F4C8;</span>
+                        <span class="text-4xl gold-text">&#x1F4C8;</span>
                         <h4 class="font-bold text-lg mt-2" style="color: #000000;">Improved Attendance</h4>
                         <p class="text-sm" style="color: #000000;">Directly addresses chronic absenteeism, helping students stay on track for graduation.</p>
                     </div>
                     <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
-                        <span class="text-4xl" style="color: #FDBB2F;">&#x1F5E3;</span>
+                        <span class="text-4xl gold-text">&#x1F5E3;</span>
                         <h4 class="font-bold text-lg mt-2" style="color: #000000;">Early Intervention</h4>
                         <p class="text-sm" style="color: #000000;">Identifies and supports at-risk students and families before attendance issues escalate.</p>
                     </div>
                     <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
-                        <span class="text-4xl" style="color: #FDBB2F;">&#x1F46A;</span>
+                        <span class="text-4xl gold-text">&#x1F46A;</span>
                         <h4 class="font-bold text-lg mt-2" style="color: #000000;">Family & Community Support</h4>
                         <p class="text-sm" style="color: #000000;">Connects families with community resources to overcome barriers to attendance.</p>
                     </div>
                     <div class="p-4 rounded-lg" style="background-color: #f8f8f8;">
-                        <span class="text-4xl" style="color: #FDBB2F;">&#x2713;</span>
+                        <span class="text-4xl gold-text">&#x2713;</span>
                         <h4 class="font-bold text-lg mt-2" style="color: #000000;">State Law Compliance</h4>
                         <p class="text-sm" style="color: #000000;">Ensures PHM fulfills all legal obligations for monitoring and reporting truancy.</p>
                     </div>
                 </div>
             </section>
-            
-             <section class="bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4" style="color: #000000;">Take Action: Support PHM Students</h2>
-                <p class="text-base md:text-lg max-w-2xl mx-auto mb-6" style="color: #000000;">Your voice matters. Let the St. Joseph County Council know you support this crucial funding for our students. Click the button below to generate a draft letter of support you can send.</p>
-                <button id="draftLetterBtn" class="text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" style="background-color: #000000; color: #FDBB2F;">
-                    ✨ Draft a Letter of Support
-                </button>
-            </section>
 
         </main>
         
         <footer class="text-center mt-12 py-4">
-            <p class="text-sm" style="color: #000000;">Penn-Harris-Madison School Corporation | Committed to Student Success</p>
+            <p class="text-sm" style="color: #000000;">Penn-Harris-Madison School Corporation | Excellence Happens Here</p>
         </footer>
 
-    </div>
-
-    <div id="letterModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay bg-black bg-opacity-50 opacity-0 hidden">
-        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-2xl transform scale-95">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 class="text-xl font-bold" style="color: #000000;">Your Draft Letter of Support</h3>
-                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
-            </div>
-            <div id="modalBody" class="p-6">
-                <div id="loader" class="flex justify-center items-center py-10">
-                    <div class="loader"></div>
-                </div>
-                <div id="letterContent" class="hidden">
-                    <textarea id="letterText" class="w-full h-64 p-3 border rounded-md bg-gray-50" readonly></textarea>
-                    <div class="flex justify-end mt-4">
-                        <button id="copyBtn" class="text-white font-bold py-2 px-4 rounded-lg" style="background-color: #000000; color: #FDBB2F;">
-                            Copy to Clipboard
-                        </button>
-                    </div>
-                    <div id="copySuccess" class="text-green-600 text-sm mt-2 text-right hidden">Copied to clipboard!</div>
-                </div>
-                 <div id="errorContent" class="hidden text-center py-10">
-                    <p class="text-red-600 font-semibold">An error occurred while generating the letter.</p>
-                    <p class="text-gray-600 text-sm">Please try again later.</p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -313,110 +326,7 @@
             }
         });
         
-        const draftLetterBtn = document.getElementById('draftLetterBtn');
-        const letterModal = document.getElementById('letterModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalOverlay = document.querySelector('.modal-overlay');
-        const modalContent = document.querySelector('.modal-content');
-        const loader = document.getElementById('loader');
-        const letterContent = document.getElementById('letterContent');
-        const errorContent = document.getElementById('errorContent');
-        const letterText = document.getElementById('letterText');
-        const copyBtn = document.getElementById('copyBtn');
-        const copySuccess = document.getElementById('copySuccess');
-
-        const openModal = () => {
-            letterModal.classList.remove('hidden');
-            setTimeout(() => {
-                modalOverlay.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-            }, 10);
-        };
-
-        const closeModal = () => {
-            modalOverlay.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                letterModal.classList.add('hidden');
-                loader.style.display = 'flex';
-                letterContent.classList.add('hidden');
-                errorContent.classList.add('hidden');
-                copySuccess.classList.add('hidden');
-            }, 300);
-        };
-        
-        draftLetterBtn.addEventListener('click', async () => {
-            openModal();
-            
-            const prompt = `
-                As a concerned parent and resident of St. Joseph County, write a concise, respectful, and persuasive letter to the St. Joseph County Council. The goal is to express strong support for the Penn-Harris-Madison (PHM) School Corporation's funding request for attendance officers.
-                Key points to include:
-                - Acknowledge the new Indiana state laws on truancy.
-                - Commend the County Council for proactively creating a funding solution with Ordinance 59-25.
-                - State that PHM serves 11,000 students and is requesting $79,500 to fund 1.5 attendance officer positions, which is a justified need based on the county's own formula.
-                - Emphasize that these officers are a vital investment in student success, crucial for improving attendance, providing early intervention, and supporting at-risk families.
-                - Urge them to approve PHM's request promptly.
-                - Keep the tone positive and community-focused. The letter should be about 150-200 words.
-                - End with a placeholder for a name like "[Your Name], Concerned Resident".
-            `;
-
-            const apiKey = ""; // Replace with your actual Gemini API Key if deploying
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-
-                const result = await response.json();
-                const candidate = result.candidates?.[0];
-
-                if (candidate && candidate.content?.parts?.[0]?.text) {
-                    letterText.value = candidate.content.parts[0].text;
-                    loader.style.display = 'none';
-                    errorContent.classList.add('hidden');
-                    letterContent.classList.remove('hidden');
-                } else {
-                    throw new Error('Invalid API response structure');
-                }
-
-            } catch (error) {
-                console.error("Gemini API Error:", error);
-                loader.style.display = 'none';
-                letterContent.classList.add('hidden');
-                errorContent.classList.remove('hidden');
-            }
-        });
-
-        closeModalBtn.addEventListener('click', closeModal);
-        letterModal.addEventListener('click', (e) => {
-            if (e.target === letterModal) {
-                closeModal();
-            }
-        });
-        
-        copyBtn.addEventListener('click', () => {
-            const textarea = document.createElement('textarea');
-            textarea.value = letterText.value;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-
-            copySuccess.classList.remove('hidden');
-            setTimeout(() => {
-                copySuccess.classList.add('hidden');
-            }, 2000);
-        });
-
     </script>
 </body>
 </html>
-
 
